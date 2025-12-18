@@ -1,0 +1,7 @@
+types,width,color
+HP, 108, #ff00ff
+Attack, 130, #ff0000
+Difense, 95, #0000ff
+Sp Attack, 80, #ffa500
+Sp Difense, 85, #32cd32
+Speed, 102, #00ffff
