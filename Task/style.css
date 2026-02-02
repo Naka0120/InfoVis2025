@@ -1,0 +1,394 @@
+:root {
+    /* Pastel Palette */
+    --primary-color: #FFB7B2;
+    /* Pastel Red */
+    --primary-dark: #FF9E99;
+    --secondary-color: #A0E7E5;
+    /* Pastel Blue/Mint */
+    --accent-color: #B4F8C8;
+    /* Pastel Green */
+    --highlight-color: #FBE7C6;
+    /* Pastel Yellow */
+
+    --bg-color: #FFF5F5;
+    /* Very light pinkish bg */
+    --panel-bg: #FFFFFF;
+
+    --text-main: #5D5C61;
+    /* Softer dark gray */
+    --text-sub: #938E96;
+
+    --border-color: #F0E6EF;
+    --hover-bg: #FFF0F5;
+    /* Lavender hue */
+
+    --shadow-sm: 0 4px 10px rgba(180, 160, 180, 0.1);
+    --shadow-md: 0 8px 24px rgba(180, 160, 180, 0.15);
+
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --font-main: 'M PLUS Rounded 1c', 'Inter', sans-serif;
+    /* Soft rounded font if available */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    background-image: radial-gradient(#FFDEE9 0%, #B5FFFC 100%);
+    /* Subtle gradient */
+    color: var(--text-main);
+    height: 100vh;
+    overflow: hidden;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+}
+
+.app-header {
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-header h1 {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    color: var(--primary-dark);
+    font-weight: 500;
+    background: var(--hover-bg);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.panel {
+    background: var(--panel-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+}
+
+/* Left Panel: List */
+.left-panel {
+    width: 380px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.control-bar {
+    padding: 1rem 1.5rem;
+    border-bottom: 2px dashed var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-bar label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--primary-dark);
+}
+
+#sort-select {
+    border: 2px solid var(--secondary-color);
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-main);
+    font-weight: 600;
+    color: var(--text-main);
+    background: white;
+    cursor: pointer;
+    outline: none;
+    flex: 1;
+}
+
+#sort-select:hover {
+    background-color: var(--hover-bg);
+}
+
+#pokemon-list {
+    list-style: none;
+    overflow-y: auto;
+    height: 100%;
+    padding: 1rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #E0D6E0;
+    border-radius: 5px;
+    border: 2px solid white;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #C0B6C0;
+}
+
+.pokemon-item {
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 0.8rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 700;
+    color: var(--text-main);
+    background: white;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+.pokemon-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-color: var(--border-color);
+}
+
+.pokemon-item.active {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(255, 183, 178, 0.4);
+}
+
+.pokemon-id {
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 0.85em;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* Right Panel: Details */
+.right-panel {
+    flex: 1;
+    padding: 3rem;
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+#initial-message {
+    color: var(--text-sub);
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+#details-content {
+    width: 100%;
+    max-width: 700px;
+}
+
+#pokemon-name {
+    font-size: 3.5rem;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--text-main);
+    position: relative;
+    text-shadow: 2px 2px 0px white;
+}
+
+.pokemon-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    height: 280px;
+    position: relative;
+}
+
+.pokemon-image-container::before {
+    content: '';
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, var(--highlight-color) 0%, transparent 70%);
+    z-index: -1;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#pokemon-img {
+    height: 100%;
+    width: auto;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
+    transition: transform 0.4s ease;
+}
+
+#pokemon-img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.stats-container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 2px solid white;
+}
+
+.stats-container h3 {
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.stat-label {
+    width: 150px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: capitalize;
+    color: var(--text-sub);
+}
+
+.stat-bar-bg {
+    flex: 1;
+    height: 14px;
+    background: #F0F0F0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 1.5rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.stat-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+}
+
+/* Pastel Stats Colors */
+.stat-row:nth-child(1) .stat-bar-fill {
+    background-color: #FFB7B2;
+}
+
+/* HP */
+.stat-row:nth-child(2) .stat-bar-fill {
+    background-color: #FFDAC1;
+}
+
+/* Attack */
+.stat-row:nth-child(3) .stat-bar-fill {
+    background-color: #E2F0CB;
+}
+
+/* Defense */
+.stat-row:nth-child(4) .stat-bar-fill {
+    background-color: #B5EAD7;
+}
+
+/* Sp. Atk */
+.stat-row:nth-child(5) .stat-bar-fill {
+    background-color: #C7CEEA;
+}
+
+/* Sp. Def */
+.stat-row:nth-child(6) .stat-bar-fill {
+    background-color: #F6EAC2;
+}
+
+/* Speed */
+
+.stat-value {
+    width: 50px;
+    text-align: right;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+/* Loading Overlay */
+#loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--secondary-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

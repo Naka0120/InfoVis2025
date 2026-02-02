@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Viewer 493</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div id="loading-overlay">
+            <div class="loader"></div>
+            <p>Loading 493 Pokemon...</p>
+        </div>
+        <header class="app-header">
+            <h1>Pokemon Viewer <span class="subtitle">001-493</span></h1>
+        </header>
+        <main class="main-content">
+            <section id="pokemon-list-container" class="panel left-panel">
+                <div class="control-bar">
+                    <label for="sort-select">Sort by:</label>
+                    <select id="sort-select">
+                        <option value="id">Number (ID)</option>
+                        <option value="hp">HP</option>
+                        <option value="attack">Attack</option>
+                        <option value="defense">Defense</option>
+                        <option value="special-attack">Sp. Atk</option>
+                        <option value="special-defense">Sp. Def</option>
+                        <option value="speed">Speed</option>
+                    </select>
+                </div>
+                <ul id="pokemon-list">
+                    <!-- Javascript will populate this -->
+                </ul>
+            </section>
+            <section id="pokemon-details-container" class="panel right-panel">
+                <div id="details-content" class="hidden">
+                    <h2 id="pokemon-name">Select a Pokemon</h2>
+                    <div class="pokemon-image-container">
+                        <img id="pokemon-img" src="" alt="">
+                    </div>
+                    <div class="stats-container">
+                        <h3>Base Stats</h3>
+                        <div id="stats-chart">
+                            <!-- Helper for stats will go here -->
+                        </div>
+                    </div>
+                </div>
+                <div id="initial-message">
+                    <p>左のリストからポケモンを選択して詳細を表示してください。</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
