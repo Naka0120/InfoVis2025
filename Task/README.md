@@ -37,4 +37,4 @@ python -m http.server
 
 - `index.html`: アプリケーションのメイン構造
 - `style.css`: スタイルシート（レスポンシブ対応、UIデザイン）
-- `script.js`: データ取得、DOM操作、イベントハンドリングロジック
+- `main.js`: データ取得、DOM操作、イベントハンドリングロジック
